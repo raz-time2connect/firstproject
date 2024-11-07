@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Form{% endblock %}
+
+{% block content %}
+<h1>Create a New Form</h1>
+<form action="{{ url_for('create_form') }}" method="POST">
+    <div class="mb-3">
+        <label for="form_name" class="form-label">Form Name</label>
+        <input type="text" id="form_name" name="form_name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="webhook_url" class="form-label">Webhook URL</label>
+        <input type="url" id="webhook_url" name="webhook_url" class="form-control" required>
+    </div>
+
+    <div id="fields-container">
+        <!-- שדה דינאמי ראשון -->
+        <div class="field-group mb-3">
+            <label class="form-label">Field Name</label>
+            <input type="text" class="form-control field-name" name="field_name" placeholder="Enter field name" required>
+            
+            <label class="form-label">Field Type</label>
+            <select class="form-select field-type" name="field_type">
+                <option value="text">Text</option>
+                <option value="email">Email</option>
+                <option value="number">Number</option>
+                <option value="password">Password</option>
+                <option value="date">Date</option>
+            </select>
+            <button type="button" class="btn btn-danger btn-sm mt-2 remove-field">Remove</button>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-secondary" onclick="addField()">Add Another Field</button>
+    <button type="submit" class="btn btn-primary">Create Form</button>
+</form>
+
+<script>
+    // פונקציה להוספת שדה חדש
+    function addField() {
+        const container = document.getElementById('fields-container');
+        const fieldGroup = document.createElement('div');
+        fieldGroup.className = 'field-group mb-3';
+
+        fieldGroup.innerHTML = `
+            <label class="form-label">Field Name</label>
+            <input type="text" class="form-control field-name" name="field_name" placeholder="Enter field name" required>
+
+            <label class="form-label">Field Type</label>
+            <select class="form-select field-type" name="field_type">
+                <option value="text">Text</option>
+                <option value="email">Email</option>
+                <option value="number">Number</option>
+                <option value="password">Password</option>
+                <option value="date">Date</option>
+            </select>
+            <button type="button" class="btn btn-danger btn-sm mt-2 remove-field">Remove</button>
+        `;
+
+        // הוספת פונקציונליות להסרת שדה
+        fieldGroup.querySelector('.remove-field').addEventListener('click', () => {
+            container.removeChild(fieldGroup);
+        });
+
+        container.appendChild(fieldGroup);
+    }
+
+    // יצירת מזהה ID אוטומטי בעת שינוי שם השדה
+    document.addEventListener('input', function (e) {
+        if (e.target.classList.contains('field-name')) {
+            const fieldName = e.target.value;
+            const sanitizedId = fieldName.trim().toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+            e.target.setAttribute('data-id', sanitizedId);
+        }
+    });
+
+    // מחיקת שדה בודד
+    document.querySelectorAll('.remove-field').forEach(button => {
+        button.addEventListener('click', function () {
+            this.closest('.field-group').remove();
+        });
+    });
+</script>
+{% endblock %}

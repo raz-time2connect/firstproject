@@ -1,42 +1,127 @@
+/* עיצוב בסיסי */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f8f9fa; /* צבע רקע נעים */
     margin: 0;
     padding: 0;
-    line-height: 1.6;
 }
 
+/* כותרת עליונה */
 header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-header ul {
-    list-style: none;
-    padding: 0;
-}
-
-header ul li {
-    display: inline;
-    margin: 0 10px;
-}
-
-header ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-main {
+/* טופס */
+form {
+    background: white;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* כפתורים כלליים */
+.btn {
+    font-size: 0.875rem; /* גודל טקסט אחיד */
+    line-height: 1.5; /* יישור גובה */
+    padding: 0.375rem 0.75rem; /* ריווח אחיד */
+    border-radius: 0.25rem; /* פינות מעוגלות */
+    display: inline-block; /* יישור תקין */
+    text-align: center; /* יישור טקסט */
+    vertical-align: middle; /* יישור אנכי */
+    cursor: pointer; /* מצביע */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* אפקט מעבר */
+}
+
+/* כפתורים בטבלה */
+.table td .btn {
+    margin-right: 5px; /* רווח בין הכפתורים */
+}
+
+/* כפתור ראשי */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* כפתור אזהרה */
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: white;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+/* כפתור מחיקה */
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #bd2130;
+    border-color: #b21f2d;
+}
+
+/* כרטיסים */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* טבלה */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+}
+
+.table-striped tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+/* פוטר */
 footer {
-    text-align: center;
-    padding: 10px 0;
+    font-size: 14px;
     background: #333;
-    color: #fff;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    color: #ccc;
+    text-align: center;
+    padding: 10px;
+}
+
+/* כותרות */
+h1 {
+    color: #343a40;
+    font-weight: bold;
+}
+
+/* הסרת אפקט פוקוס או צל בכפתורים */
+.btn:focus,
+.btn:active {
+    box-shadow: none !important; /* מסיר מסגרת לבנה */
+    outline: none !important;   /* מסיר מסגרת פוקוס */
+}
+
+/* הסרה ספציפית עבור כפתור מחיקה */
+.btn-danger:focus,
+.btn-danger:active {
+    box-shadow: none !important; /* מסיר צל בכפתור אדום */
+    outline: none !important;   /* מסיר מסגרת פוקוס בכפתור אדום */
+}
+/* הסרת ריווח ומסגרת מטפסים בתוך טבלה */
+.table td form {
+    margin: 0; /* מסיר רווחים */
+    padding: 0; /* מסיר padding */
+    display: inline; /* מונע שינוי מבנה */
+    box-shadow: none; /* מסיר צל */
+    background: none; /* מסיר רקע */
+    border: none; /* מסיר גבולות */
 }

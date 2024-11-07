@@ -4,5 +4,6 @@
 
 {% block content %}
 <h1>Welcome to My Website</h1>
-<p>This is the homepage. Navigate to the form page using the menu above.</p>
+<p>This is the homepage. Navigate to the form management page using the menu.</p>
+<a href="{{ url_for('manage_forms') }}" class="button">Manage Forms</a>
 {% endblock %}
