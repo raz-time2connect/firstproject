@@ -10,8 +10,3 @@
 
   # Your build command
   command = "echo 'No build command necessary because we use static HTML'"
-
-[[redirects]]
-  from = "/*"
-  to = "/home.html"
-  status = 200
