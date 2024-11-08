@@ -1,0 +1,17 @@
+# netlify.toml
+
+[build]
+  # Directory to change to before starting a build. 
+  # This is where we will look for package.json/.nvmrc/etc.
+  base = "/"
+
+  # Directory that includes your static HTML files to publish to Netlify (relative to root of your repo)
+  publish = "templates"
+
+  # Your build command
+  command = "echo 'No build command necessary because we use static HTML'"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
