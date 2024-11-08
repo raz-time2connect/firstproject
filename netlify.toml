@@ -1,9 +1,0 @@
-[build]
-  base = "/"
-  publish = "dist"  # או 'build' בהתאם למבנה הפרויקט שלך
-  command = "echo 'No build command necessary'"  # שנה אם יש פקודת בנייה ספציפית
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
