@@ -46,8 +46,9 @@ def save_forms(forms):
 
 
 @app.route("/")
-def index():
-    return render_template("index.html")
+def home():
+    return render_template("home.html")
+
 
 
 @app.route("/manage_forms")
@@ -55,8 +56,6 @@ def manage_forms():
     forms = load_forms()
     return render_template("manage_forms.html", forms=forms)
 
-
-from datetime import datetime
 
 @app.route("/create_form", methods=["GET", "POST"])
 def create_form():
@@ -81,11 +80,7 @@ def create_form():
         ]
 
         forms = load_forms()
-        forms[form_name] = {
-            "webhook_url": webhook_url,
-            "fields": fields,
-            "created_at": datetime.now().strftime('%Y-%m-%d %H:%M:%S')  # Add timestamp
-        }
+        forms[form_name] = {"webhook_url": webhook_url, "fields": fields}
         save_forms(forms)
 
         flash("Form created successfully!", "success")
@@ -181,4 +176,4 @@ def edit_form(form_name):
 if __name__ == '__main__':
     # Use the environment variable PORT if available, otherwise default to 5001 for local
     port = int(os.environ.get("PORT", 5001))
-    app.run(host="0.0.0.0", port=port, debug=False)
+    app.run(host="0.0.0.0", port=port, debug=True)

@@ -13,5 +13,5 @@
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/home.html"
   status = 200
