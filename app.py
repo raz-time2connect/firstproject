@@ -56,6 +56,8 @@ def manage_forms():
     return render_template("manage_forms.html", forms=forms)
 
 
+from datetime import datetime
+
 @app.route("/create_form", methods=["GET", "POST"])
 def create_form():
     if request.method == "POST":
@@ -79,7 +81,11 @@ def create_form():
         ]
 
         forms = load_forms()
-        forms[form_name] = {"webhook_url": webhook_url, "fields": fields}
+        forms[form_name] = {
+            "webhook_url": webhook_url,
+            "fields": fields,
+            "created_at": datetime.now().strftime('%Y-%m-%d %H:%M:%S')  # Add timestamp
+        }
         save_forms(forms)
 
         flash("Form created successfully!", "success")
