@@ -54,6 +54,18 @@
     border-radius: 15px; /* Adjust the value for the desired roundness */
     max-width: 100%; /* Ensures the image is responsive */
     height: auto; /* Maintain aspect ratio */
+    animation: moveBackground 10s linear infinite; /* Background animation */
+
+}
+/* Adding animation to the text */
+.hero h1 {
+    animation: fadeInDown 1s ease-out forwards; /* Text animation */
+    animation-delay: 1s; /* Delay for text to appear after background */
+}
+
+.hero p {
+    animation: fadeInUp 1s ease-out forwards; /* Paragraph animation */
+    animation-delay: 1.5s; /* Delay for text to appear after background */
 }
 
     /* Features Section Styles */
@@ -78,39 +90,43 @@
         height: 50px;
     }
 
-    /* Animation Keyframes */
-    @keyframes fadeInDown {
-        from {
-            opacity: 0;
-            transform: translateY(-30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+/* Animation Keyframes */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
     }
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
-    @keyframes moveBackground {
-        0% { background-position: 0% 0%; }
-        100% { background-position: 100% 0%; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-    }
+}
+
+@keyframes moveBackground {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 0%; }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
 </style>
 
 <div class="hero">
