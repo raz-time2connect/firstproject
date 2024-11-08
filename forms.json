@@ -1,14 +1,21 @@
 {
-    "First Form Test": {
-        "webhook_url": "https://www.google.com/search?q=translate&sca_esv=63da0d7b448ad6d2&ei=GbQsZ9yUFp6mi-gPpNnhsQI&oq=tra&gs_lp=Egxnd3Mtd2l6LXNlcnAiA3RyYSoCCAAyEBAAGIAEGLEDGEMYgwEYigUyChAuGIAEGEMYigUyChAAGIAEGEMYigUyEBAAGIAEGLEDGEMYgwEYigUyChAAGIAEGEMYigUyChAAGIAEGEMYigUyDRAuGIAEGEMY1AIYigUyEBAAGIAEGLEDGEMYgwEYigUyChAAGIAEGEMYigUyBRAAGIAESLMWUMQKWIgOcAJ4AZABAJgBxAGgAdgDqgEDMC4zuAEDyAEA-AEBmAIFoALtA8ICChAAGLADGNYEGEfCAg0QABiABBiwAxhDGIoFwgIOEAAYsAMY5AIY1gTYAQHCAhMQLhiABBiwAxhDGMgDGIoF2AEBwgILEAAYgAQYsQMYgwHCAgsQLhiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIREC4YgAQYsQMY0QMYgwEYxwGYAwCIBgGQBhG6BgYIARABGAmSBwUyLjIuMaAH6Rw&sclient=gws-wiz-serp",
+    "Make webhook Test": {
+        "webhook_url": "https://hook.eu1.make.com/adhyoo759csd7yicx4fy2epg9qd2xfwm",
         "fields": [
             {
                 "name": "First Name",
-                "id": "first name"
+                "id": "first_name_a20a00",
+                "type": "text"
             },
             {
                 "name": "Last Name",
-                "id": "Last Name"
+                "id": "last_name_d8e9e7",
+                "type": "text"
+            },
+            {
+                "name": "Email",
+                "id": "email_751a4a",
+                "type": "email"
             }
         ]
     }
