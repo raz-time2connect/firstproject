@@ -35,10 +35,13 @@ def load_forms():
     try:
         with open(FORMS_FILE, "r") as file:
             data = file.read()
+            logging.debug(f"Loaded raw forms data: {data}")
             if not data.strip():  # בדוק אם הקובץ ריק
                 logging.warning("forms.json is empty. Initializing empty dictionary.")
                 return {}
-            return json.loads(data)  # טען את התוכן כ-JSON
+            loaded_data = json.loads(data)  # טען את התוכן כ-JSON
+            logging.debug(f"Parsed forms data: {loaded_data}")
+            return loaded_data
     except json.JSONDecodeError as e:
         logging.error(f"Error decoding JSON from {FORMS_FILE}: {e}")
         return {}  # מחזיר מילון ריק במקרה של שגיאה
@@ -51,6 +54,7 @@ def load_forms():
 # Save forms to a JSON file
 def save_forms(forms):
     try:
+        logging.debug(f"Saving forms data: {forms}")
         with open(FORMS_FILE, "w") as file:
             json.dump(forms, file, indent=4)
             logging.debug(f"Forms saved successfully to {FORMS_FILE}.")
@@ -118,7 +122,7 @@ def delete_form(form_name):
     else:
         flash("Form not found.", "danger")
     return redirect(url_for("manage_forms"))
-from datetime import datetime
+
 
 @app.route("/form/<form_name>", methods=["GET", "POST"])
 def form(form_name):
@@ -160,7 +164,6 @@ def form(form_name):
 
     return render_template("form.html", form_name=form_name, fields=form_data["fields"], form_data=form_data)
 
-
 @app.route("/edit_form/<form_name>", methods=["GET", "POST"])
 def edit_form(form_name):
     forms = load_forms()
@@ -169,6 +172,8 @@ def edit_form(form_name):
     if not form_data:
         flash("Form not found.", "danger")
         return redirect(url_for("manage_forms"))
+
+    logging.debug(f"Original form data before editing: {form_data}")
 
     if request.method == "POST":
         new_form_name = request.form.get("form_name")
@@ -186,16 +191,40 @@ def edit_form(form_name):
             )
         ]
 
+        # שמור את created_at אם הוא קיים, אחרת צור אותו מחדש
+        created_at = form_data.get("created_at", datetime.now().isoformat())
+        
+        # עדכן את updated_at בזמן שמירה
+        updated_at = datetime.now().isoformat()
+
+        logging.debug(f"Preserved created_at: {created_at}")
+        logging.debug(f"New updated_at: {updated_at}")
+
+        # עדכון שם הטופס
         if form_name != new_form_name:
             del forms[form_name]
 
-        forms[new_form_name] = {"webhook_url": webhook_url, "fields": fields}
+        # עדכן את הנתונים
+        forms[new_form_name] = {
+            "webhook_url": webhook_url,
+            "fields": fields,
+            "created_at": created_at,
+            "updated_at": updated_at
+        }
+
+        logging.debug(f"Updated form data for {new_form_name}: {forms[new_form_name]}")
+
         save_forms(forms)
+
+        # בדוק שהשדות נשמרו
+        logging.debug(f"Saved forms data after update: {forms}")
 
         flash("Form updated successfully!", "success")
         return redirect(url_for("manage_forms"))
 
     return render_template("edit_form.html", form_name=form_name, form_data=form_data)
+
+
 
 
 if __name__ == '__main__':
