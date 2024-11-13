@@ -6,6 +6,7 @@ import logging
 from urllib.parse import urlparse
 import threading
 import uuid
+from datetime import datetime
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -57,6 +58,7 @@ def manage_forms():
     return render_template("manage_forms.html", forms=forms)
 
 
+
 @app.route("/create_form", methods=["GET", "POST"])
 def create_form():
     if request.method == "POST":
@@ -80,13 +82,18 @@ def create_form():
         ]
 
         forms = load_forms()
-        forms[form_name] = {"webhook_url": webhook_url, "fields": fields}
+        forms[form_name] = {
+            "webhook_url": webhook_url,
+            "fields": fields,
+            "created_at": datetime.now().isoformat()  # Add creation time
+        }
         save_forms(forms)
 
         flash("Form created successfully!", "success")
         return redirect(url_for("manage_forms"))
 
     return render_template("create_form.html")
+
 
 
 @app.route("/delete_form/<form_name>", methods=["POST"])
@@ -99,6 +106,7 @@ def delete_form(form_name):
     else:
         flash("Form not found.", "danger")
     return redirect(url_for("manage_forms"))
+from datetime import datetime
 
 @app.route("/form/<form_name>", methods=["GET", "POST"])
 def form(form_name):
@@ -110,7 +118,11 @@ def form(form_name):
         return redirect(url_for("manage_forms"))
 
     if request.method == "POST":
+        # Collect field data
         data = {field["id"]: request.form.get(field["id"]) for field in form_data["fields"]}
+        
+        # Add submission time
+        data["submitted_at"] = datetime.now().isoformat()
 
         # Adjust URL if necessary
         webhook_url = form_data["webhook_url"]
@@ -135,6 +147,7 @@ def form(form_name):
             flash("Network error while submitting the form.", "danger")
 
     return render_template("form.html", form_name=form_name, fields=form_data["fields"], form_data=form_data)
+
 
 @app.route("/edit_form/<form_name>", methods=["GET", "POST"])
 def edit_form(form_name):

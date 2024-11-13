@@ -1,5 +1,4 @@
 {
-
     "tes": {
         "webhook_url": "https://www.google.com/search?q=translate&sca_esv=63da0d7b448ad6d2&ei=GbQsZ9yUFp6mi-gPpNnhsQI&oq=tra&gs_lp=Egxnd3Mtd2l6LXNlcnAiA3RyYSoCCAAyEBAAGIAEGLEDGEMYgwEYigUyChAuGIAEGEMYigUyChAAGIAEGEMYigUyEBAAGIAEGLEDGEMYgwEYigUyChAAGIAEGEMYigUyChAAGIAEGEMYigUyDRAuGIAEGEMY1AIYigUyEBAAGIAEGLEDGEMYgwEYigUyChAAGIAEGEMYigUyBRAAGIAESLMWUMQKWIgOcAJ4AZABAJgBxAGgAdgDqgEDMC4zuAEDyAEA-AEBmAIFoALtA8ICChAAGLADGNYEGEfCAg0QABiABBiwAxhDGIoFwgIOEAAYsAMY5AIY1gTYAQHCAhMQLhiABBiwAxhDGMgDGIoF2AEBwgILEAAYgAQYsQMYgwHCAgsQLhiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIREC4YgAQYsQMY0QMYgwEYxwGYAwCIBgGQBhG6BgYIARABGAmSBwUyLjIuMaAH6Rw&sclient=gws-wiz-serp",
         "fields": [
@@ -32,5 +31,16 @@
             }
         ],
         "created_at": "2024-11-08 16:39:28"
+    },
+    "V2 Jets - Empty Leg": {
+        "webhook_url": "https://hook.eu1.make.com/s9mc2m1qgsd87p5tmyrrgcp557pd26vy",
+        "fields": [
+            {
+                "name": "From",
+                "id": "from_54a084",
+                "type": "text"
+            }
+        ],
+        "created_at": "2024-11-13T16:57:31.278325"
     }
 }
