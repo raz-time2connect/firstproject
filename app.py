@@ -32,18 +32,30 @@ def generate_field_id(name):
 
 # Load forms from a JSON file
 def load_forms():
-    with lock:
-        if os.path.exists(FORMS_FILE):
-            with open(FORMS_FILE, "r") as file:
-                return json.load(file)
-        return {}
+    try:
+        with open(FORMS_FILE, "r") as file:
+            data = file.read()
+            if not data.strip():  # בדוק אם הקובץ ריק
+                logging.warning("forms.json is empty. Initializing empty dictionary.")
+                return {}
+            return json.loads(data)  # טען את התוכן כ-JSON
+    except json.JSONDecodeError as e:
+        logging.error(f"Error decoding JSON from {FORMS_FILE}: {e}")
+        return {}  # מחזיר מילון ריק במקרה של שגיאה
+    except FileNotFoundError:
+        logging.warning(f"{FORMS_FILE} not found. Initializing empty dictionary.")
+        return {}  # מחזיר מילון ריק אם הקובץ לא קיים
+
 
 
 # Save forms to a JSON file
 def save_forms(forms):
-    with lock:
+    try:
         with open(FORMS_FILE, "w") as file:
             json.dump(forms, file, indent=4)
+            logging.debug(f"Forms saved successfully to {FORMS_FILE}.")
+    except Exception as e:
+        logging.error(f"Error saving forms to {FORMS_FILE}: {e}")
 
 
 @app.route("/")
