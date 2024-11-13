@@ -189,4 +189,4 @@ def edit_form(form_name):
 if __name__ == '__main__':
     # Use the environment variable PORT if available, otherwise default to 5001 for local
     port = int(os.environ.get("PORT", 5001))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=port, debug=False)
