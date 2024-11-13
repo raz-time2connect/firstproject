@@ -1,4 +1,32 @@
 {
-
-    
+    "V2 Jets - Empty Leg 2": {
+        "webhook_url": "https://hook.eu1.make.com/s9mc2m1qgsd87p5tmyrrgcp557pd26vy",
+        "fields": [
+            {
+                "name": "From",
+                "id": "from_88dd1a",
+                "type": "text"
+            },
+            {
+                "name": "To",
+                "id": "to_d81131",
+                "type": "text"
+            },
+            {
+                "name": "Date",
+                "id": "date_3cc898",
+                "type": "text"
+            },
+            {
+                "name": "Price",
+                "id": "price_f816cb",
+                "type": "text"
+            },
+            {
+                "name": "Number of seats",
+                "id": "number_of_seats_adc27b",
+                "type": "text"
+            }
+        ]
+    }
 }
